@@ -47,12 +47,12 @@ if "%port%"=="" (
 ) else (
     echo %SPACE%%SPACE%%SPACE%%HEADER%
     echo.
-    echo Testing %ip% on port %port%. . .
+    echo %SPACE%Testing %ip% on port %port%. . .
     echo.
     powershell -Command "Test-NetConnection -ComputerName %ip% -Port %port%"
 )
 
-echo Pinging %ip%. . .
+echo %SPACE%Pinging %ip%. . .
 powershell -Command "ping %ip%"
 echo.
 
