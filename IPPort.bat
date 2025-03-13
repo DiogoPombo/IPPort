@@ -52,12 +52,14 @@ if "%port%"=="" (
     powershell -Command "Test-NetConnection -ComputerName %ip% -Port %port%"
 )
 
-echo %SPACE%Tracking %ip%. . .
-powershell -Command "tracert %ip%"
-echo.
-
 echo %SPACE%Performing simple ping on %ip%. . .
 powershell -Command "ping %ip%"
+echo.
+echo.
+echo.
+
+echo %SPACE%Tracking %ip%. . .
+powershell -Command "tracert %ip%"
 echo.
 
 :end
