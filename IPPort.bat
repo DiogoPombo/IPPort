@@ -5,7 +5,7 @@ set AUTHOR=POMBO
 set AVATAR=\Õ/
 set MADE_BY=MADE BY:
 set SPACE= 
-set KEY=@2025
+set KEY=@EWEP - 2025
 set HEADER=************************* IPPort *************************
 set DESCRIPTION=This script tests an IP/URL and the port (optional).
 
