@@ -5,7 +5,7 @@ set AUTHOR=POMBO
 set AVATAR=\Õ/
 set MADE_BY=MADE BY:
 set SPACE= 
-set KEY=@EWEP - 2024
+set KEY=@2025
 set HEADER=************************* IPPort *************************
 set DESCRIPTION=This script tests an IP/URL and the port (optional).
 
@@ -43,13 +43,13 @@ if "%port%"=="" (
     echo.
     echo %SPACE%Testing %ip%. . .
     echo.
-    powershell -Command "Test-NetConnection -ComputerName %ip%"
+    powershell -Command "Test-NetConnection -ComputerName %ip% -InformationLevel Detailed"
 ) else (
     echo %SPACE%%SPACE%%SPACE%%HEADER%
     echo.
     echo %SPACE%Testing %ip% on port %port%. . .
     echo.
-    powershell -Command "Test-NetConnection -ComputerName %ip% -Port %port%"
+    powershell -Command "Test-NetConnection -ComputerName %ip% -Port %port% -InformationLevel Detailed"
 )
 
 echo %SPACE%Performing simple ping on %ip%. . .
