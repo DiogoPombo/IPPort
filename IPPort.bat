@@ -48,7 +48,7 @@ echo %SPACE%Detected host: %host%
 timeout /t 1 /nobreak >nul
 echo.
 
-echo %host% | findstr /i ".onion .xyz .ru" >nul
+echo %host% | findstr /i ".onion .xyz" >nul
 if %errorlevel%==0 (
     cls
     COLOR F4
