@@ -94,13 +94,13 @@ echo.
 echo.
 echo.
 
-echo %SPACE%Executing simple curl on %host%...
+echo %SPACE%Executing simple curl on %entrada%...
 timeout /t 1 /nobreak >nul
 echo.
 echo %SPACE%Generated User-Agent: %userAgent%
 timeout /t 1 /nobreak >nul
 echo.
-curl.exe -I --max-time 10 --user-agent "%userAgent%" %host%
+curl.exe -I --max-time 120 --user-agent "%userAgent%" %entrada%
 echo.
 echo.
 echo.
