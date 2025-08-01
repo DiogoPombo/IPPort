@@ -14,7 +14,7 @@ set KEY=@EWEP - 2025
 set /a randNum=%random% %% 9000 + 1000
 set "userAgent=IPPort_!randNum!"
 
-:: Detect language
+
 for /f "tokens=3" %%I in ('reg query "HKEY_CURRENT_USER\Control Panel\International" /v LocaleName') do set "LANGUAGE=%%I"
 set "LANG_PREFIX=%LANGUAGE:~0,2%"
 if /i "%LANG_PREFIX%"=="pt" (
@@ -23,7 +23,7 @@ if /i "%LANG_PREFIX%"=="pt" (
     set "IDIOMA=EN"
 )
 
-:: Set messages based on language
+
 if "%IDIOMA%"=="PT" (
     set "MSG_HEADER=******************** IPPort ********************"
     set "MSG_DESCRIPTION=Esse script testa um IP/URL e a porta (opcional)."
