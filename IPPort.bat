@@ -42,6 +42,7 @@ if "%IDIOMA%"=="PT" (
     set "MSG_TRACE=Executando trace em"
     set "MSG_USER_AGENT=User-Agent gerado:"
     set "MSG_ANOTHER_TEST=Deseja executar outro teste?"
+    set "MSG_C=Buscando endereço canônico, se existir. . ."
 ) else (
     set "MSG_HEADER=******************** IPPort ********************"
     set "MSG_DESCRIPTION=This script tests an IP/URL and an optional port."
@@ -60,6 +61,7 @@ if "%IDIOMA%"=="PT" (
     set "MSG_TRACE=Running trace to"
     set "MSG_USER_AGENT=Generated User-Agent:"
     set "MSG_ANOTHER_TEST=Do you want to run another test?"
+    set "MSG_C=Looking for a canonical address, if exists..."
 )
 
 echo !APP!!SPACE!!MADE_BY!!SPACE!!SPACE!!AUTHOR!!SPACE!!SPACE!!AVATAR!!SPACE!!KEY!
@@ -151,6 +153,11 @@ echo !SPACE!!MSG_DNS!
 timeout /t 1 /nobreak >nul
 echo.
 powershell -Command "nslookup !host!"
+echo.
+echo !SPACE!!MSG_C!
+timeout /t 1 /nobreak >nul
+echo.
+powershell -Command "nslookup -type=CNAME !host!"
 echo.
 echo.
 echo.
