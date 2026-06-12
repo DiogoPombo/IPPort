@@ -1,55 +1,55 @@
 # IPPort
 
-![Autor](https://img.shields.io/badge/Autor-POMBO-blue)
-![Ano](https://img.shields.io/badge/Ano-2025-green)
-![Versão](https://img.shields.io/badge/Vers%C3%A3o-1.0-orange)
+![Author](https://img.shields.io/badge/Author-POMBO-blue)
+![Year](https://img.shields.io/badge/Year-2025-green)
+![Version](https://img.shields.io/badge/Version-1.0-orange)
 
-**IPPort** é um script utilitário leve em lote (Batch/CMD) projetado para automatizar testes essenciais de conectividade ponto a ponto entre a máquina local e um host de destino (IP ou URL). Ele combina a leveza do ecossistema Batch com interfaces visuais dinâmicas do PowerShell, tornando a triagem rápida de problemas de rede mais ágil e acessível para técnicos e administradores.
-
----
-
-## 🚀 Funcionalidades
-
-- **Interface Visual Guiada:** Utiliza caixas de entrada (`InputBox`) e caixas de mensagem (`MessageBox`) gráficas via PowerShell, evitando que o operador precise digitar parâmetros diretamente na linha de comando.
-- **Internacionalização Dinâmica (Bilingue):** Detecta automaticamente o idioma padrão do Sistema Operacional (através da consulta da chave `LocaleName` no Registro do Windows) e adapta toda a interface e mensagens dinamicamente para **Português (PT)** ou **Inglês (EN)**.
-- **Filtro Preventivo de Hosts:** Possui uma validação de segurança que bloqueia a execução do script caso o operador insira domínios potencialmente maliciosos, de spam ou incompatíveis (como as extensões `.onion` e `.xyz`).
-- **User-Agent Dinâmico:** Gera um identificador aleatório exclusivo (`IPPort_XXXX`) a cada execução do script. Essa assinatura é injetada nas requisições HTTP do `curl`, mitigando bloqueios automatizados por WAF (Web Application Firewall) durante a checagem do servidor.
-- **Suporte a IPv6:** Estrutura preparada para aceitar barramentos IPv6 (orientando o usuário a utilizá-los entre colchetes, ex: `[XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX]`).
+**IPPort** is a lightweight batch utility script (Batch/CMD) designed to automate essential point-to-point connectivity tests between the local machine and a target host (IP or URL). It combines the efficiency of the native Batch ecosystem with dynamic PowerShell graphical interfaces, making rapid network troubleshooting agile and accessible for technicians and administrators.
 
 ---
 
-## 🔍 Sequência de Testes Executados (Esteira de Diagnóstico)
+## 🚀 Features
 
-O script realiza uma varredura sequencial direta para isolar falhas de rede de forma clara:
-1. **Validação de Conectividade TCP (`Test-NetConnection`):** Testa a abertura de uma porta específica (se informada) ou executa um diagnóstico de porta padrão, trazendo detalhes técnicos da interface de conexão.
-2. **Ping Simples (`ping`):** Valida a resposta básica de eco ICMP e o tempo de latência da rota.
-3. **Resolução de DNS (`nslookup`):** Consulta a resolução de nomes padrão para certificar se o domínio aponta corretamente para um IP válido.
-4. **Busca por Endereço Canônico (`nslookup -type=CNAME`):** Identifica a existência de pseudônimos (aliases) ou redirecionamentos na infraestrutura de DNS do destino.
-5. **Inspeção de Cabeçalho HTTP (`curl`):** Executa uma chamada do tipo `HEAD` (`-I`) com tempo limite máximo de 120 segundos e aplicando o *User-Agent* dinâmico para analisar os códigos de retorno HTTP (como 200 OK, 403 Forbidden, 500 Error).
-6. **Rastreamento de Rota (`tracert`):** Lista todos os saltos pelos quais o pacote trafega até atingir o destino, ideal para identificar pontos de estrangulamento ou loops de roteamento.
+- **Guided Graphical Interface:** Utilizes graphical input boxes (`InputBox`) and message boxes (`MessageBox`) via PowerShell, eliminating the need for the operator to type parameters directly into the command line.
+- **Dynamic Internationalization (Bilingual):** Automatically detects the default Operating System language (by querying the `LocaleName` key in the Windows Registry) and dynamically adapts the entire interface and messages to either **Portuguese (PT)** or **English (EN)**.
+- **Preventive Host Filtering:** Features a security validation that blocks script execution if the operator enters potentially malicious, spam, or incompatible domains (such as `.onion` and `.xyz` extensions).
+- **Dynamic User-Agent:** Generates a unique random identifier (`IPPort_XXXX`) on every execution. This signature is injected into the `curl` HTTP requests, mitigating automated blocks by WAFs (Web Application Firewalls) during server health checks.
+- **IPv6 Support:** Structured to accept IPv6 addresses, guiding the user to enclose them in brackets (e.g., `[XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX]`).
 
 ---
 
-## 📋 Pré-requisitos
+## 🔍 Execution Sequence (Diagnostic Pipeline)
 
-- **Sistema Operacional:** Windows 10 ou Windows 11.
-- **Dependências Nativas:** O script utiliza componentes nativos do Windows (`powershell.exe`, `curl.exe`, ferramentas padrão de rede). Não requer nenhuma instalação de terceiros.
-- **Privilégios:** Pode ser executado em nível de usuário comum.
-
----
-
-## 🛠️ Como Utilizar
-
-1. Copie o código original do script `IPPort`.
-2. Abra o **Bloco de Notas** (Notepad) ou o editor de texto de sua preferência.
-3. Cole o código e salve o arquivo obrigatoriamente com a extensão **`.bat`** ou **`.cmd`** (Exemplo: `IPPort.bat`).
-4. **Dica de Codificação:** Certifique-se de salvar o arquivo com a codificação `UTF-8` para garantir que os caracteres especiais e acentos sejam renderizados perfeitamente na tabela de páginas do terminal (`chcp 65001`).
-5. Dê um duplo clique no arquivo gerado para iniciar os testes.
+The script performs a direct sequential sweep to isolate network failures clearly:
+1. **TCP Connectivity Validation (`Test-NetConnection`):** Tests connection to a specific port (if provided) or runs a default port diagnostic, retrieving technical details about the connection interface.
+2. **Simple Ping (`ping`):** Validates basic ICMP echo responses and route latency.
+3. **DNS Resolution (`nslookup`):** Queries default name resolution to verify if the domain correctly resolves to a valid IP address.
+4. **Canonical Address Lookup (`nslookup -type=CNAME`):** Identifies the existence of aliases or redirects within the target's DNS infrastructure.
+5. **HTTP Header Inspection (`curl`):** Executes an HTTP `HEAD` (`-I`) request with a maximum timeout of 120 seconds, applying the dynamic *User-Agent* to analyze HTTP return codes (e.g., 200 OK, 403 Forbidden, 500 Error).
+6. **Route Tracing (`tracert`):** Lists all hops the packet traverses until reaching the destination, ideal for identifying bottlenecks or routing loops.
 
 ---
 
-## 👤 Créditos e Assinatura
+## 📋 Prerequisites
 
-- **Desenvolvedor:** POMBO `\Õ/`
-- **Assinatura / Chave:** `@EWEP - 2025`
-- **Propósito:** Diagnóstico ágil, enxuto e direto de redes ponto a ponto.
+- **Operating System:** Windows 10 or Windows 11.
+- **Native Dependencies:** The script utilizes native Windows components (`powershell.exe`, `curl.exe`, standard networking tools). No third-party installations are required.
+- **Privileges:** Can be executed with standard user privileges.
+
+---
+
+## 🛠️ How to Use
+
+1. Copy the original `IPPort` script code.
+2. Open **Notepad** or your preferred text editor.
+3. Paste the code and save the file with a **`.bat`** or **`.cmd`** extension (Example: `IPPort.bat`).
+4. **Encoding Tip:** Ensure you save the file with `UTF-8` encoding to guarantee that special characters and accents render perfectly within the terminal's code page (`chcp 65001`).
+5. Double-click the generated file to start the tests.
+
+---
+
+## 👤 Credits and Signature
+
+- **Developer:** POMBO `\Õ/`
+- **Signature / Key:** `@EWEP - 2025`
+- **Purpose:** Agile, lean, and direct point-to-point network diagnostics.
