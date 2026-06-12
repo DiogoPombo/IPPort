@@ -45,6 +45,7 @@ The script performs a direct sequential sweep to isolate network failures clearl
 3. Paste the code and save the file with a **`.bat`** or **`.cmd`** extension (Example: `IPPort.bat`).
 4. **Encoding Tip:** Ensure you save the file with `UTF-8` encoding to guarantee that special characters and accents render perfectly within the terminal's code page (`chcp 65001`).
 5. Double-click the generated file to start the tests.
+6. Or just download it and run.
 
 ---
 
